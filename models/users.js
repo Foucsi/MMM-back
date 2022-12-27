@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const profilSchema = mongoose.Schema({
-  profil: String,
+  profils: String,
 });
 
 const userSchema = mongoose.Schema({

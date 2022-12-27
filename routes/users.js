@@ -14,7 +14,7 @@ router.get("/all", (req, res) => {
     res.json({ result: true, users: data });
   });
 });
-/* GET users listing. */
+/* route signup. */
 router.post("/signup", function (req, res) {
   if (!checkBody(req.body, ["username", "password"])) {
     res.json({ result: false, error: "Missing or empty fields" });
@@ -39,6 +39,7 @@ router.post("/signup", function (req, res) {
   });
 });
 
+/* routes signin */
 router.post("/signin", (req, res) => {
   if (!checkBody(req.body, ["username", "password"])) {
     res.json({ result: false, error: "Missing or empty fields" });

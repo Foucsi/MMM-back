@@ -8,8 +8,8 @@ const token = uid2(32);
 const bcrypt = require("bcrypt");
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
+router.get("/", function (req, res) {
+  res.json({ result: true });
 });
 
 module.exports = router;

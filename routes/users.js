@@ -14,6 +14,18 @@ router.get("/all", (req, res) => {
     res.json({ result: true, users: data });
   });
 });
+
+/* get info users by username */
+router.get("/info/:username", (req, res) => {
+  User.findOne({ username: req.params.username }).then((data) => {
+    if (data) {
+      res.json({ result: true, user: data });
+    } else {
+      res.json({ result: false, error: "user not found !" });
+    }
+  });
+});
+
 /* route signup. */
 router.post("/signup", function (req, res) {
   if (!checkBody(req.body, ["username", "password"])) {

@@ -19,9 +19,19 @@ router.get("/all", (req, res) => {
 router.get("/info/:username", (req, res) => {
   User.findOne({ username: req.params.username }).then((data) => {
     if (data) {
-      res.json({ result: true, user: data });
+      res.json({ result: true, user: data.profil[0].profils });
     } else {
       res.json({ result: false, error: "user not found !" });
+    }
+  });
+});
+
+router.get("/name/:username", (req, res) => {
+  User.findOne({ username: req.params.username }).then((data) => {
+    if (data) {
+      res.json({ result: true, user: data.username });
+    } else {
+      res.json({ result: false });
     }
   });
 });
@@ -40,7 +50,6 @@ router.post("/signup", function (req, res) {
         email: req.body.email,
         password: hash,
         token: token,
-        profilSchema: [], // profil Monteur ou client
       });
       newUser.save().then((data) => {
         res.json({ result: true, user: data });
@@ -51,22 +60,22 @@ router.post("/signup", function (req, res) {
   });
 });
 
-// router.post("/profil/:username", (req, res) => {
-//   User.findOneAndUpdate(
-//     { username: req.params.username },
-//     {
-//       $push: {
-//         profil: { profils: req.body.profil },
-//       },
-//     }
-//   ).then((data) => {
-//     if (data) {
-//       res.json({ result: true, data: data });
-//     } else {
-//       res.json({ result: false });
-//     }
-//   });
-// });
+router.post("/profil/:username", (req, res) => {
+  User.findOneAndUpdate(
+    { username: req.params.username },
+    {
+      $push: {
+        profil: { profils: req.body.profil },
+      },
+    }
+  ).then((data) => {
+    if (data) {
+      res.json({ result: true, data: data });
+    } else {
+      res.json({ result: false });
+    }
+  });
+});
 
 // router.delete("/removeProfil/:username", (req, res) => {
 //   User.findOneAndUpdate(

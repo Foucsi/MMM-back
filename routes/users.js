@@ -39,35 +39,35 @@ router.post("/signup", function (req, res) {
   });
 });
 
-router.post("/profil/:username", (req, res) => {
-  User.findOneAndUpdate(
-    { username: req.params.username },
-    {
-      $push: {
-        profil: { profils: req.body.profil },
-      },
-    }
-  ).then((data) => {
-    if (data) {
-      res.json({ result: true, data: data });
-    } else {
-      res.json({ result: false });
-    }
-  });
-});
+// router.post("/profil/:username", (req, res) => {
+//   User.findOneAndUpdate(
+//     { username: req.params.username },
+//     {
+//       $push: {
+//         profil: { profils: req.body.profil },
+//       },
+//     }
+//   ).then((data) => {
+//     if (data) {
+//       res.json({ result: true, data: data });
+//     } else {
+//       res.json({ result: false });
+//     }
+//   });
+// });
 
-router.delete("/removeProfil/:username", (req, res) => {
-  User.findOneAndUpdate(
-    { username: req.params.username },
-    { $pull: { profil: { profils: req.body.profil } } }
-  ).then((data) => {
-    if (data) {
-      res.json({ result: true, data });
-    } else {
-      res.json({ result: false });
-    }
-  });
-});
+// router.delete("/removeProfil/:username", (req, res) => {
+//   User.findOneAndUpdate(
+//     { username: req.params.username },
+//     { $pull: { profil: { profils: req.body.profil } } }
+//   ).then((data) => {
+//     if (data) {
+//       res.json({ result: true, data });
+//     } else {
+//       res.json({ result: false });
+//     }
+//   });
+// });
 
 /* routes signin */
 router.post("/signin", (req, res) => {
